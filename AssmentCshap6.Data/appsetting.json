@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "AssConnect": "Data Source=DESKTOP-NPEJLEB\\SQLEXPRESS;Initial Catalog=AssmentCshap6;User ID=btn;Password=123"
+  }
+}

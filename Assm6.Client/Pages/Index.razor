@@ -1,0 +1,15 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<Microsoft.AspNetCore.Components.Authorization.AuthorizeView>
+    <Authorized>
+        <h1>Xin chào ,@context.User.Identity.Name</h1>
+    </Authorized>
+    <NotAuthorized>
+        <h1>Xin chào ,....</h1>
+    </NotAuthorized>
+</Microsoft.AspNetCore.Components.Authorization.AuthorizeView>
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
