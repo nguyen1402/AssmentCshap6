@@ -19,8 +19,6 @@ namespace AssmentCshap6.Data.Configuarations
             builder.Property(c => c.Ten).HasMaxLength(200).IsRequired();
             builder.Property(x => x.Sexs).HasDefaultValue(Sex.female);
             builder.Property(c => c.DBO);
-            builder.HasOne(x => x.Nganhs).WithMany(x => x.Students).HasForeignKey(x => x.Manganh);
-            builder.HasOne(x => x.Schools).WithMany(x => x.Students).HasForeignKey(x => x.IdSchools);
         }
     }
 }

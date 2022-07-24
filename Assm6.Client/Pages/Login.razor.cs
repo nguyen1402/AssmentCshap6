@@ -12,6 +12,7 @@ namespace Assm6.Client.Pages
         [Inject]
         public NavigationManager NavigationManager { get; set; }
         public bool ShowAuthError { get; set; }
+        [Parameter]
         public string Error { get; set; }
         public async Task ExecuteLogin()
         {

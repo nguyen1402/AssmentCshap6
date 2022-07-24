@@ -1,0 +1,24 @@
+﻿@page "/deleteMonhoc/{id}"
+
+<h2>Xóa Môn Học</h2>
+
+@if(_monhoc != null)
+{
+    <EditForm Model="_monhoc" OnValidSubmit="Delete" class="card card-body bg-light mt-5">
+        <DataAnnotationsValidator />
+        <div class="form-group row">
+            <label for="name" class="row" style="color : red;text-align: center; font-size:20px;">Bạn có chắc Chắn Muốn Xóa ?</label>
+            <div class="row">
+                <InputText id="name" class="form-control" @bind-Value="_monhoc.TenMonhoc" disabled/>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-6 text-center">
+                <button type="submit" class="btn btn-danger">Xóa</button>
+            </div>
+            <div class="col-md-6 text-center">
+                <a href="/nganhs" class="btn btn-primary">Quay Lại</a>
+            </div>
+        </div>
+    </EditForm>
+}

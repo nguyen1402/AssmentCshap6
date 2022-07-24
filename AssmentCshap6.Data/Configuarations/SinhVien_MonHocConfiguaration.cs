@@ -15,7 +15,7 @@ namespace AssmentCshap6.Data.Configuarations
         {
             builder.HasKey(t => new { t.StudenId, t.MaMonHoc });
 
-            builder.ToTable("SinhVien_MonHoc");
+            builder.ToTable("SinhVienInMonHocs");
 
             builder.HasOne(t => t.Students).WithMany(pc => pc.sinhVien_MonHocs)
                 .HasForeignKey(pc => pc.StudenId).OnDelete(DeleteBehavior.Cascade);

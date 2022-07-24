@@ -1,4 +1,4 @@
-﻿using AssmentCshap6.Data.Common;
+﻿using AsmentCShap6.ViewModels.Common;
 using AssmentCshap6.Data.ViewModels;
 
 namespace Assm6.Client.Authentication

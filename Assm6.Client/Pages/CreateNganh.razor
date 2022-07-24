@@ -1,0 +1,25 @@
+﻿@page "/createNganh"
+
+<h2>Tạo Mới Ngành</h2>
+@if (ShowAuthError)
+{
+    <div class="alert alert-danger" role="alert">
+        @Error
+    </div>
+}
+<EditForm Model="_nganh" OnValidSubmit="Create" class="card card-body bg-light mt-5">
+    <DataAnnotationsValidator />
+    <div class="form-group row">
+        <label for="name" class="col-md-2 col-form-label">Tên Ngành:</label>
+        <div class="col-md-10">
+            <InputText id="name" class="form-control" @bind-Value="_nganh.TenNganh" />
+            <ValidationMessage For="@(() => _nganh.TenNganh)" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <button type="submit" class="btn btn-success">Create</button>
+        </div>
+    </div>
+</EditForm>

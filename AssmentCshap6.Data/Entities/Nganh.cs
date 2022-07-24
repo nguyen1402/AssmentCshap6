@@ -8,8 +8,8 @@ namespace AssmentCshap6.Data.Entities
 {
     public class Nganh
     {
-        public int MaNganh { get; set; }
+        public int IdNganh { get; set; }
         public string TenNganh { get; set; }
-        public List<Student> Students { get; set; }
+        public List<SinhVien_Nganh> sinhVien_Nganhs { get; set; }
     }
 }

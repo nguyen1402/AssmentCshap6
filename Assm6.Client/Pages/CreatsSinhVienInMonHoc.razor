@@ -1,0 +1,46 @@
+﻿@page "/createSinhVienInMonHoc"
+
+<h2>Tạo Mới Sinh Viên Lớp</h2>
+@if (ShowAuthError)
+{
+    <div class="alert alert-danger" role="alert">
+        @Error
+    </div>
+}
+<EditForm Model="_sinhvieninmh" OnValidSubmit="Create" class="card card-body bg-light mt-5">
+    <DataAnnotationsValidator />
+    <div class="form-group row pt-2">
+        <label for="name" class="col-md-2 col-form-label">Email:</label>
+        <div class="col-md-10">
+            <InputText id="name" class="form-control" @bind-Value="_sinhvieninmh.email" />
+            <ValidationMessage For="@(() => _sinhvieninmh.email)" />
+        </div>
+    </div>
+    <div class="form-group row pt-2">
+        <label for="name" class="col-md-2 col-form-label">Môn Học:</label>
+        <div class="col-md-10">
+            <InputSelect class="form-control" @bind-Value="_sinhvieninmh.tenmonhoc">
+                @if (monhocList != null)
+                {
+                    @foreach (var item in monhocList)
+                    {
+                        <option value="@item.TenMonhoc">@item.TenMonhoc</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+    <div class="form-group row pt-2">
+        <label for="name" class="col-md-2 col-form-label">Điểm:</label>
+        <div class="col-md-10">
+            <InputNumber id="name" class="form-control" @bind-Value="_sinhvieninmh.diem" />
+            <ValidationMessage For="@(() => _sinhvieninmh.diem)" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <button type="submit" class="btn btn-success">Create</button>
+        </div>
+    </div>
+</EditForm>
+

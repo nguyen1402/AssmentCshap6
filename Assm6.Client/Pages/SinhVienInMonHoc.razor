@@ -1,0 +1,22 @@
+﻿@page "/sinhvieninmonhocs"
+@using Assm6.Client.Components
+@using Assm6.Client.Components.SinhVienInMonHocTable
+@using Microsoft.AspNetCore.Authorization
+@*@attribute [Authorize]*@
+
+<div class="row">
+    <div class="col-md-5">
+        <Search OnSearchChanged="SearchChanged"/>
+    </div>
+    <div class="col-md-2">
+        <a href="/createSinhVienInMonHoc">Thêm Sinh Viên Lớp Học</a>
+    </div>
+</div>
+<div class="row">
+    <SinhVienInMonHocTable SinhVienInMonHocs="SVIMHList" />
+</div>
+<div class="row">
+    <div class="col">
+        <Pagination MetaData="MetaData" Spread="2" SelectedPage="SelectedPage" />
+    </div>
+</div>

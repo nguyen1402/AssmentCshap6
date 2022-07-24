@@ -1,0 +1,37 @@
+﻿@page "/deleteSinhVienInMonHoc/{idsv}/{idmh}"
+
+<h2>Xóa Môn Học</h2>
+
+@if(_svmh != null)
+{
+    <EditForm Model="_svmh" OnValidSubmit="Delete" class="card card-body bg-light mt-5">
+        <DataAnnotationsValidator />
+        <div class="form-group row">
+            <label for="name" class="row" style="color : red;text-align: center; font-size:20px;">Bạn có chắc Chắn Muốn Xóa ?</label>
+             <div class="row">
+                 <label class="form-control">Họ Tên</label>
+                <InputText id="name" class="form-control" @bind-Value="_svmh.TenSV" disabled/>
+            </div>
+             <div class="row">
+                 <label class="form-control">Môn Học</label>
+                <InputText id="name" class="form-control" @bind-Value="_svmh.TenMonHoc" disabled/>
+            </div>
+             <div class="row">
+                 <label class="form-control">Email</label>
+                <InputText id="name" class="form-control" @bind-Value="_svmh.Email" disabled/>
+            </div>
+            <div class="row">
+                <label class="form-control">Điểm</label>
+                <InputNumber id="name" class="form-control" @bind-Value="_svmh.Diem" disabled/>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-6 text-center">
+                <button type="submit" class="btn btn-danger">Xóa</button>
+            </div>
+            <div class="col-md-6 text-center">
+                <a href="/nganhs" class="btn btn-primary">Quay Lại</a>
+            </div>
+        </div>
+    </EditForm>
+}
