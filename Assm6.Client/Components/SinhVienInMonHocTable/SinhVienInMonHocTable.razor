@@ -1,0 +1,47 @@
+﻿@if(SinhVienInMonHocs.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Họ Tên SV</th>
+                <th scope="col">Môn Học</th>
+                <th scope="col">Email</th>
+                 <th scope="col">Điểm</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var @svimh in SinhVienInMonHocs)
+            {
+                <tr>
+                   
+                    <td class="align-middle">
+                        @svimh.TenSV
+                    </td>
+                    <td class="align-middle">
+                       @svimh.TenMonHoc
+                    </td>
+                    <td class="align-middle">
+                       @svimh.Email
+                    </td>
+                     <td class="align-middle">
+                       @svimh.Diem
+                    </td>
+                    <td class="align-middle">
+                        <button type="button" class="btn btn-info" @onclick="() => RedirectToUpdate(svimh.IdSrudent,svimh.IdMonhoc)">Sửa</button>
+                    </td>
+                    <td class="align-middle">
+                        <button type="button" class="btn btn-danger" @onclick="() => RedirectToDelete(svimh.IdSrudent,svimh.IdMonhoc)">Xóa</button>
+                    </td>
+                </tr>
+             }
+            </tbody>
+    </table>
+}
+else
+{
+    <span>
+        Danh sách ngành đang rỗng...
+    </span>
+}

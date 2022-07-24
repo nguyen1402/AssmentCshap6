@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AsmentCShap6.ViewModels\AsmentCShap6.ViewModels.csproj" />
     <ProjectReference Include="..\AssmentCshap6.Data\AssmentCshap6.Data.csproj" />
   </ItemGroup>
 

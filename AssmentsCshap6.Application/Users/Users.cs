@@ -1,16 +1,12 @@
-﻿using AssmentCshap6.Data.Common;
+﻿using AsmentCShap6.ViewModels.Common;
 using AssmentCshap6.Data.Entities;
 using AssmentCshap6.Data.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AssmentsCshap6.Application.Users
 {
@@ -29,10 +25,9 @@ namespace AssmentsCshap6.Application.Users
         }
         public async Task<ApiResult<string>> Authencate(Loginrequest request)
         {
-            var user = await _userManager.FindByNameAsync(request.UserName);
+            var user = await _userManager.FindByEmailAsync(request.UserName);
             if (user == null || !await _userManager.CheckPasswordAsync(user, request.Password))
                 return new ApiErrorResult<string>("Đăng nhập không được !");
-
             var signingCredentials = GetSigningCredentials();
             var claims = GetClaims(user);
             var tokenOptions = GenerateTokenOptions(signingCredentials, claims);
@@ -83,10 +78,9 @@ namespace AssmentsCshap6.Application.Users
             {
                 DBO = request.DBO,
                 Email = request.Email,
-                IdSchools = request.IdSchool,
-                Manganh = request.IdNganh,
-                HovsTenDem = request.HovaTen,
+                HovsTenDem = request.HovaTenDem,
                 Ten = request.Ten,
+                Sexs = request.Sexs,
                 Diachi = request.Diachi,
                 UserName = request.UserName,
                 PhoneNumber = request.PhoneNumber

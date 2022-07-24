@@ -1,12 +1,13 @@
 using AssmentCshap6.Data.EF;
 using AssmentCshap6.Data.Entities;
-using AssmentsCshap6.Application.nganh;
-using AssmentsCshap6.Application.Nganh;
-using AssmentsCshap6.Application.Schools;
+using AssmentsCshap6.Application.Monhocs;
+using AssmentsCshap6.Application.Nganhs;
+using AssmentsCshap6.Application.SinhVienInMonHocs;
 using AssmentsCshap6.Application.Users;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
@@ -16,9 +17,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddCors(option =>
+builder.Services.AddCors(policy =>
 {
-    option.AddPolicy("CorsPolicy", buidel => buidel.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+    policy.AddPolicy("CorsPolicy", opt => opt
+    .AllowAnyOrigin()
+    .AllowAnyHeader()
+    .AllowAnyMethod()
+    .WithExposedHeaders("X-Pagination"));
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 //builder.Services.AddEndpointsApiExplorer();
@@ -43,13 +48,11 @@ builder.Services.AddAuthentication(opt =>
     };
 });
 
-//builder.Services.AddRouting(options => options.LowercaseUrls = true);
-//builder.Services.AddScoped<UserManager<Student>, UserManager<Student>>();
-//builder.Services.AddScoped<SignInManager<Student>, SignInManager<Student>>();
-//builder.Services.AddScoped<RoleManager<AppRole>, RoleManager<AppRole>>();
 builder.Services.AddScoped<IUsers, Users>();
-builder.Services.AddScoped<Ischool, school>();
-builder.Services.AddScoped<INganh, nganh>();
+builder.Services.AddScoped<IMonHocService, MonHocService>();
+builder.Services.AddScoped<INganhService, NganhService>();
+builder.Services.AddScoped<ISinhvienInMonHocService, SinhvienInMonHocService>();
+
 builder.Services.AddDbContext<AsmentCshap6Context>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("AssConnect")));
 builder.Services.AddSwaggerGen();
 
@@ -64,6 +67,12 @@ if (app.Environment.IsDevelopment())
 }
 app.UseRouting();
 app.UseCors("CorsPolicy");
+app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions()
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"StaticFiles")),
+    RequestPath = new PathString("/StaticFiles")
+});
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseHttpsRedirection();

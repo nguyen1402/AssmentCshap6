@@ -1,0 +1,43 @@
+﻿@if(Monhocs.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col"></th>
+                <th scope="col">Tên Môn Học</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var mh in Monhocs)
+            {
+                <tr>
+                   
+                    <td class="align-middle">
+                        @mh.IdMonhoc
+                    </td>
+                    <td>
+                        <img src="@mh.ImageUrl" alt="product image" style="width:100px;" />
+                    </td>
+                    <td class="align-middle">
+                       @mh.TenMonhoc
+                    </td>
+                    <td class="align-middle">
+                        <button type="button" class="btn btn-info" @onclick="() => RedirectToUpdate(mh.IdMonhoc)">Sửa</button>
+                    </td>
+                    <td class="align-middle">
+                        <button type="button" class="btn btn-danger" @onclick="() => RedirectToDelete(mh.IdMonhoc)">Xóa</button>
+                    </td>
+                </tr>
+             }
+            </tbody>
+    </table>
+}
+else
+{
+    <span>
+        Danh sách môn học đang rỗng...
+    </span>
+}

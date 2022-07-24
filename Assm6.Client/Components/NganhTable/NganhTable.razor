@@ -1,0 +1,39 @@
+﻿@if(Nganhs.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Tên Ngành</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var nganh in Nganhs)
+            {
+                <tr>
+                   
+                    <td class="align-middle">
+                        @nganh.IdNganh
+                    </td>
+                    <td class="align-middle">
+                       @nganh.TenNganh
+                    </td>
+                    <td class="align-middle">
+                        <button type="button" class="btn btn-info" @onclick="() => RedirectToUpdate(nganh.IdNganh)">Sửa</button>
+                    </td>
+                    <td class="align-middle">
+                        <button type="button" class="btn btn-danger" @onclick="() => RedirectToDelete(nganh.IdNganh)">Xóa</button>
+                    </td>
+                </tr>
+             }
+            </tbody>
+    </table>
+}
+else
+{
+    <span>
+        Danh sách ngành đang rỗng...
+    </span>
+}

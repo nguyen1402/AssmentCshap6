@@ -15,7 +15,8 @@ namespace AssmentCshap6.Data.Configuarations
         {
             builder.ToTable("Schools");
             builder.HasKey(c => c.IdSchool);
-            builder.Property(c => c.NameSchools).HasMaxLength(200).IsRequired();
+            builder.Property(c => c.TenTruong).HasMaxLength(200).IsRequired();
+            
         }
     }
 }

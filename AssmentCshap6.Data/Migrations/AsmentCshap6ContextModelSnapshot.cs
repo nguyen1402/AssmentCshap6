@@ -73,6 +73,10 @@ namespace AssmentCshap6.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdMonhoc"), 1L, 1);
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("TenMonhoc")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -85,18 +89,18 @@ namespace AssmentCshap6.Data.Migrations
 
             modelBuilder.Entity("AssmentCshap6.Data.Entities.Nganh", b =>
                 {
-                    b.Property<int>("MaNganh")
+                    b.Property<int>("IdNganh")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaNganh"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdNganh"), 1L, 1);
 
                     b.Property<string>("TenNganh")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.HasKey("MaNganh");
+                    b.HasKey("IdNganh");
 
                     b.ToTable("Nganhs", (string)null);
                 });
@@ -109,7 +113,7 @@ namespace AssmentCshap6.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdSchool"), 1L, 1);
 
-                    b.Property<string>("NameSchools")
+                    b.Property<string>("TenTruong")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
@@ -146,14 +150,52 @@ namespace AssmentCshap6.Data.Migrations
                     b.Property<int>("MaMonHoc")
                         .HasColumnType("int");
 
-                    b.Property<double>("Diem")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Diem")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("StudenId", "MaMonHoc");
 
                     b.HasIndex("MaMonHoc");
 
-                    b.ToTable("SinhVien_MonHoc", (string)null);
+                    b.ToTable("SinhVienInMonHocs", (string)null);
+                });
+
+            modelBuilder.Entity("AssmentCshap6.Data.Entities.SinhVien_Nganh", b =>
+                {
+                    b.Property<Guid>("StudenId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("IdNganh")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Desctions")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("StudenId", "IdNganh");
+
+                    b.HasIndex("IdNganh");
+
+                    b.ToTable("SinhVienInNganhs", (string)null);
+                });
+
+            modelBuilder.Entity("AssmentCshap6.Data.Entities.SinhVien_School", b =>
+                {
+                    b.Property<Guid>("StudenId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("IdSchools")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Desctions")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("StudenId", "IdSchools");
+
+                    b.HasIndex("IdSchools");
+
+                    b.ToTable("SinhVienInSchools", (string)null);
                 });
 
             modelBuilder.Entity("AssmentCshap6.Data.Entities.Student", b =>
@@ -186,17 +228,11 @@ namespace AssmentCshap6.Data.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<int>("IdSchools")
-                        .HasColumnType("int");
-
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
-
-                    b.Property<int>("Manganh")
-                        .HasColumnType("int");
 
                     b.Property<string>("NormalizedEmail")
                         .HasColumnType("nvarchar(max)");
@@ -233,10 +269,6 @@ namespace AssmentCshap6.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("IdSchools");
-
-                    b.HasIndex("Manganh");
 
                     b.ToTable("Students", (string)null);
                 });
@@ -376,23 +408,42 @@ namespace AssmentCshap6.Data.Migrations
                     b.Navigation("Students");
                 });
 
-            modelBuilder.Entity("AssmentCshap6.Data.Entities.Student", b =>
+            modelBuilder.Entity("AssmentCshap6.Data.Entities.SinhVien_Nganh", b =>
                 {
-                    b.HasOne("AssmentCshap6.Data.Entities.School", "Schools")
-                        .WithMany("Students")
-                        .HasForeignKey("IdSchools")
+                    b.HasOne("AssmentCshap6.Data.Entities.Nganh", "Nganhs")
+                        .WithMany("sinhVien_Nganhs")
+                        .HasForeignKey("IdNganh")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AssmentCshap6.Data.Entities.Nganh", "Nganhs")
-                        .WithMany("Students")
-                        .HasForeignKey("Manganh")
+                    b.HasOne("AssmentCshap6.Data.Entities.Student", "Students")
+                        .WithMany("sinhVien_Nganhs")
+                        .HasForeignKey("StudenId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Nganhs");
 
+                    b.Navigation("Students");
+                });
+
+            modelBuilder.Entity("AssmentCshap6.Data.Entities.SinhVien_School", b =>
+                {
+                    b.HasOne("AssmentCshap6.Data.Entities.School", "Schools")
+                        .WithMany("sinhVien_Schools")
+                        .HasForeignKey("IdSchools")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AssmentCshap6.Data.Entities.Student", "Students")
+                        .WithMany("sinhVien_Schools")
+                        .HasForeignKey("StudenId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Schools");
+
+                    b.Navigation("Students");
                 });
 
             modelBuilder.Entity("AssmentCshap6.Data.Entities.Cnass", b =>
@@ -407,17 +458,21 @@ namespace AssmentCshap6.Data.Migrations
 
             modelBuilder.Entity("AssmentCshap6.Data.Entities.Nganh", b =>
                 {
-                    b.Navigation("Students");
+                    b.Navigation("sinhVien_Nganhs");
                 });
 
             modelBuilder.Entity("AssmentCshap6.Data.Entities.School", b =>
                 {
-                    b.Navigation("Students");
+                    b.Navigation("sinhVien_Schools");
                 });
 
             modelBuilder.Entity("AssmentCshap6.Data.Entities.Student", b =>
                 {
                     b.Navigation("sinhVien_MonHocs");
+
+                    b.Navigation("sinhVien_Nganhs");
+
+                    b.Navigation("sinhVien_Schools");
 
                     b.Navigation("sinhvien_Lops");
                 });

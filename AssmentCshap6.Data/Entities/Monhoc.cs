@@ -10,6 +10,7 @@ namespace AssmentCshap6.Data.Entities
     {
         public int IdMonhoc { get; set; }
         public string TenMonhoc { get; set; }
-        public List<SinhVien_MonHoc> sinhVien_MonHocs { get; set; }
+        public string ImageUrl { get; set; }
+        public virtual ICollection<SinhVien_MonHoc> sinhVien_MonHocs { get; set; }
     }
 }

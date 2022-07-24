@@ -12,5 +12,6 @@ namespace AssmentCshap6.Data.Entities
         public string TenLop { get; set; }
 
         public List<Sinhvien_Lop> sinhvien_Lops { get; set; }
+
     }
 }

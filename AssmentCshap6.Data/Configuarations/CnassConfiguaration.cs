@@ -16,6 +16,7 @@ namespace AssmentCshap6.Data.Configuarations
             builder.ToTable("Lops");
             builder.HasKey(c => c.MaLop);
             builder.Property(c => c.TenLop).HasMaxLength(200).IsRequired();
+            
         }
     }
 }

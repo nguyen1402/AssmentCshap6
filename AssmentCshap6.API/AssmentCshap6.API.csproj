@@ -8,12 +8,18 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.6" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AsmentCShap6.ViewModels\AsmentCShap6.ViewModels.csproj" />
     <ProjectReference Include="..\AssmentCshap6.Data\AssmentCshap6.Data.csproj" />
     <ProjectReference Include="..\AssmentsCshap6.Application\AssmentsCshap6.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="StaticFiles\Images\" />
   </ItemGroup>
 
 </Project>

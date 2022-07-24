@@ -9,10 +9,10 @@ namespace AssmentCshap6.Data.Entities
     public class Sinhvien_Lop
     {
         public Guid StudenId { get; set; }
-        public Student Students { get; set; }
+        public virtual Student Students { get; set; }
 
         public int Malop { get; set; }
-        public Cnass Cnasss { get; set; }
+        public virtual Cnass Cnasss { get; set; }
 
         public string Desctions { get; set; }
     }

@@ -1,0 +1,32 @@
+﻿@page "/updateNganh/{id}"
+
+<h2>Update Product Form</h2>
+
+@if(_nganh != null)
+{
+     @if (ShowAuthError)
+    {
+        <div class="alert alert-danger" role="alert">
+            @Error
+        </div>
+    }
+    <EditForm Model="_nganh" OnValidSubmit="Update" class="card card-body bg-light mt-5">
+        <DataAnnotationsValidator />
+        <div class="form-group row">
+            <label for="name" class="col-md-2 col-form-label">Tên Ngành:</label>
+            <div class="col-md-10">
+                <InputText id="name" class="form-control" @bind-Value="_nganh.TenNganh" />
+                <ValidationMessage For="@(() => _nganh.TenNganh)" />
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-6 text-center">
+                <button type="submit" class="btn btn-danger">Sửa</button>
+            </div>
+            <div class="col-md-6 text-center">
+                <a href="/nganhs" class="btn btn-primary">Quay Lại</a>
+            </div>
+        </div>
+    </EditForm>
+
+}

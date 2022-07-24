@@ -9,8 +9,7 @@ namespace AssmentCshap6.Data.Entities
     public class School
     {
         public int IdSchool { get; set; }
-        public string NameSchools { get; set; }
-
-        public List<Student> Students { get; set; }
+        public string TenTruong { get; set; }
+        public List<SinhVien_School> sinhVien_Schools { get; set; }
     }
 }

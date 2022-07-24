@@ -23,9 +23,11 @@ namespace AssmentCshap6.Data.EF
         public DbSet<Monhoc> Monhocs { get; set; }
         public DbSet<Nganh> Nganhs { get; set; }
         public DbSet<School> Schools { get; set; }
-        public DbSet<Sinhvien_Lop> Sinhvien_Lops { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<Sinhvien_Lop> Sinhvien_Lops { get; set; }
+        public DbSet<SinhVien_Nganh> SinhVien_Nganhs { get; set; }
         public DbSet<SinhVien_MonHoc> SinhVien_MonHocs { get; set; }
+        public DbSet<SinhVien_School> SinhVien_Schools { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -34,9 +36,11 @@ namespace AssmentCshap6.Data.EF
             modelBuilder.ApplyConfiguration(new MonhocConfiguaration());
             modelBuilder.ApplyConfiguration(new NganhConfiguarations());
             modelBuilder.ApplyConfiguration(new SchoolConfiguaration());
-            modelBuilder.ApplyConfiguration(new Sinhvien_LopConfiguaration());
             modelBuilder.ApplyConfiguration(new StudentsConfiguaration());
+            modelBuilder.ApplyConfiguration(new Sinhvien_LopConfiguaration());
             modelBuilder.ApplyConfiguration(new SinhVien_MonHocConfiguaration());
+            modelBuilder.ApplyConfiguration(new Sinhvien_NganhConfiguaration());
+            modelBuilder.ApplyConfiguration(new Sinhvien_SchoolConfiguaration());
 
             modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("AppUserClaims");
             modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("AppUserRoles").HasKey(x => new { x.UserId, x.RoleId });

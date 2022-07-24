@@ -14,8 +14,9 @@ namespace AssmentCshap6.Data.Configuarations
         public void Configure(EntityTypeBuilder<Nganh> builder)
         {
             builder.ToTable("Nganhs");
-            builder.HasKey(c => c.MaNganh);
+            builder.HasKey(c => c.IdNganh);
             builder.Property(c => c.TenNganh).HasMaxLength(200).IsRequired();
+            
         }
     }
 }

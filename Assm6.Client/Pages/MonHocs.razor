@@ -1,0 +1,22 @@
+﻿@page "/monhocs"
+@using Assm6.Client.Components
+@using Assm6.Client.Components.MonHocTable
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+<div class="row">
+    <div class="col-md-5">
+        <Search OnSearchChanged="SearchChanged"/>
+    </div>
+    <div class="col-md-2">
+        <a href="/createMonhoc">Tạo Mới Môn Học</a>
+    </div>
+</div>
+<div class="row">
+    <MonHocTable Monhocs="NganhList" />
+</div>
+<div class="row">
+    <div class="col">
+        <Pagination MetaData="MetaData" Spread="2" SelectedPage="SelectedPage" />
+    </div>
+</div>

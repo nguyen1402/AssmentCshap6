@@ -1,0 +1,102 @@
+﻿@page "/register"
+
+<h3>Register</h3>
+
+@if (ShowAuthError)
+{
+    <div class="alert alert-danger" role="alert">
+        <p>@Error</p>
+    </div>
+}
+
+@if (string.IsNullOrEmpty(Succes))
+{
+    <EditForm Model="_userRg" OnValidSubmit="Registerss" class="card card-body bg-light mt-5">
+    <DataAnnotationsValidator />
+    <div class="form-group row pt-2">
+        <label for="hovatendem" class="col-md-2 col-form-label">Họ Và Tên Đệm:</label>
+        <div class="col-md-10">
+            <InputText id="email" class="form-control" @bind-Value="_userRg.HovaTenDem" />
+            <ValidationMessage For="@(() => _userRg.HovaTenDem)" />
+        </div>
+    </div>
+
+    <div class="form-group row pt-2">
+        <label for="ten" class="col-md-2 col-form-label">Tên :</label>
+        <div class="col-md-10">
+            <InputText id="email" class="form-control" @bind-Value="_userRg.Ten" />
+            <ValidationMessage For="@(() => _userRg.Ten)" />
+        </div>
+    </div>
+    <div class="form-group row pt-2">
+        <label for="ngaysinh" class="col-md-2 col-form-label">Ngày sinh :</label>
+        <div class="col-md-10">
+            <InputDate id="email" class="form-control" @bind-Value="_userRg.DBO" />
+            <ValidationMessage For="@(() => _userRg.DBO)" />
+        </div>
+    </div>
+    <div class="form-group row pt-2">
+        <label for="diachi" class="col-md-2 col-form-label">Địa chỉ :</label>
+        <div class="col-md-10">
+            <InputText id="email" class="form-control" @bind-Value="_userRg.Diachi" />
+            <ValidationMessage For="@(() => _userRg.Diachi)" />
+        </div>
+    </div>
+    <div class="form-group row pt-2">
+        <label for="gioitinh" class="col-md-2 col-form-label">Giới tính :</label>
+        <div class="col-md-10">
+            <InputSelect @bind-Value="_userRg.Sexs" class="form-control">
+                <option value="@nam">Nam</option>
+                <option value="@nu">Nữ</option>
+            </InputSelect>
+            <ValidationMessage For="@(() => _userRg.Sexs)" />
+        </div>
+    </div>
+    <div class="form-group row pt-2">
+        <label for="email" class="col-md-2 col-form-label">Email :</label>
+        <div class="col-md-10">
+            <InputText id="email" class="form-control" @bind-Value="_userRg.Email" />
+            <ValidationMessage For="@(() => _userRg.Email)" />
+        </div>
+    </div>
+    <div class="form-group row pt-2">
+        <label for="sdt" class="col-md-2 col-form-label">Số điện thoại :</label>
+        <div class="col-md-10">
+            <InputText id="email" class="form-control" @bind-Value="_userRg.PhoneNumber" />
+            <ValidationMessage For="@(() => _userRg.PhoneNumber)" />
+        </div>
+    </div>
+    <div class="form-group row pt-2">
+        <label for="taikhoan" class="col-md-2 col-form-label">Tài Khoản :</label>
+        <div class="col-md-10">
+            <InputText id="email" class="form-control" @bind-Value="_userRg.UserName" />
+            <ValidationMessage For="@(() => _userRg.UserName)" />
+        </div>
+    </div>
+    <div class="form-group row pt-2">
+        <label for="matkhau" class="col-md-2 col-form-label">Mật khẩu :</label>
+        <div class="col-md-10">
+            <InputText id="email" class="form-control" @bind-Value="_userRg.Password" />
+            <ValidationMessage For="@(() => _userRg.Password)" />
+        </div>
+    </div>
+    <div class="form-group row pt-2">
+        <label for="xacnhanmatkhau" class="col-md-2 col-form-label">Xác Nhận Mật khẩu :</label>
+        <div class="col-md-10">
+            <InputText id="email" class="form-control" @bind-Value="_userRg.ConfirmPassword" />
+            <ValidationMessage For="@(() => _userRg.ConfirmPassword)" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <button type="submit" class="btn btn-success">Đăng kí</button>
+        </div>
+    </div>
+    </EditForm>
+}
+else
+    {
+        <h1>@Succes</h1>
+        <a href="/login" class=" btn btn-primary">Đăng nhập</a>
+    }

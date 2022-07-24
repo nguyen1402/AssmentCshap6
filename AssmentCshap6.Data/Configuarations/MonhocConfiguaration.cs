@@ -16,6 +16,7 @@ namespace AssmentCshap6.Data.Configuarations
             builder.ToTable("Monhocs");
             builder.HasKey(c => c.IdMonhoc);
             builder.Property(c => c.TenMonhoc).HasMaxLength(200).IsRequired();
+            
         }
     }
 }

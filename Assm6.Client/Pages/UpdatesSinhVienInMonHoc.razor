@@ -1,0 +1,32 @@
+﻿@page "/updateSinhVienInMonHoc/{idsv}/{idmh}"
+
+<h2>Cập Nhật Điểm Sinh Viên Môn Học</h2>
+
+@if(_svmh != null)
+{
+     @if (ShowAuthError)
+    {
+        <div class="alert alert-danger" role="alert">
+            @Error
+        </div>
+    }
+    <EditForm Model="_svmh" OnValidSubmit="Update" class="card card-body bg-light mt-5">
+        <DataAnnotationsValidator />
+        <div class="form-group row">
+            <label for="name" class="col-md-2 col-form-label">Điểm:</label>
+            <div class="col-md-10">
+                <InputNumber id="name" class="form-control" @bind-Value="_svmh.Diem" />
+                <ValidationMessage For="@(() => _svmh.Diem)" />
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-6 text-center">
+                <button type="submit" class="btn btn-danger">Sửa</button>
+            </div>
+            <div class="col-md-6 text-center">
+                <a href="/sinhvieninmonhocs" class="btn btn-primary">Quay Lại</a>
+            </div>
+        </div>
+    </EditForm>
+
+}
